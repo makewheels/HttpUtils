@@ -27,10 +27,16 @@ import java.util.Map.Entry;
  * @author Administrator
  */
 public class HttpUtil {
-    private static String userAgent = "Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.86 Safari/537.36";
-    private static String contentType = "application/x-www-form-urlencoded";
+    private static final String userAgent = "Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.86 Safari/537.36";
+    private static final String contentType = "application/x-www-form-urlencoded";
 
-
+    /**
+     * 重试get请求
+     *
+     * @param url
+     * @return
+     * @throws IOException
+     */
     public static String tryGet(String url) throws IOException {
         CloseableHttpClient client = HttpClients.createDefault();
         HttpGet httpGet = new HttpGet();
@@ -45,6 +51,12 @@ public class HttpUtil {
         return EntityUtils.toString(entity, Charset.defaultCharset());
     }
 
+    /**
+     * 普通get请求
+     *
+     * @param url
+     * @return
+     */
     public static String get(String url) {
         try {
             return tryGet(url);
@@ -70,7 +82,7 @@ public class HttpUtil {
         CloseableHttpClient client = HttpClients.createDefault();
         HttpPost httpPost = new HttpPost(url);
         // 装填参数
-        List<NameValuePair> nvps = new ArrayList<NameValuePair>();
+        List<NameValuePair> nvps = new ArrayList<>();
         if (param != null) {
             for (Entry<String, String> entry : param.entrySet()) {
                 nvps.add(new BasicNameValuePair(entry.getKey(), entry.getValue()));
