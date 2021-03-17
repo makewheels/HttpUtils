@@ -23,8 +23,6 @@ import java.util.Map.Entry;
 
 /**
  * Http工具类
- *
- * @author Administrator
  */
 public class HttpUtil {
     private static final String userAgent = "Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.86 Safari/537.36";
@@ -32,10 +30,6 @@ public class HttpUtil {
 
     /**
      * 重试get请求
-     *
-     * @param url
-     * @return
-     * @throws IOException
      */
     public static String tryGet(String url) throws IOException {
         CloseableHttpClient client = HttpClients.createDefault();
@@ -53,9 +47,6 @@ public class HttpUtil {
 
     /**
      * 普通get请求
-     *
-     * @param url
-     * @return
      */
     public static String get(String url) {
         try {
@@ -73,9 +64,6 @@ public class HttpUtil {
 
     /**
      * 发送post请求
-     *
-     * @param url
-     * @return
      */
     public static String post(String url, Map<String, String> param) {
         System.out.println("HttpClient POST: " + url);
